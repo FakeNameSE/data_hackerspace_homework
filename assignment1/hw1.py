@@ -73,14 +73,14 @@ def normalize(image):
     maximum = np.amax(image)
     minimum = np.amin(image)
     normed_image = (255*(image - minimum)) / (maximum - minimum)
-    return normed_image     
+    return int(normed_image)     
     
 
 def sigmoid_normalize(image, a):
     maximum = np.amax(image)
     minimum = np.amin(image)
     normed_image = 255*(1+np.exp((-a**(-1))*(image-128)))**(-1)
-    return normed_image    
+    return int(normed_image)    
 
 # print(histogram_times('airplane_crashes.csv'))
 # print(weigh_pokemons('pokedex.json', 10.0))
