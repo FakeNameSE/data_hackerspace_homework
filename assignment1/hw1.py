@@ -72,20 +72,23 @@ def reflections_and_projections(points):
 def normalize(image):
     maximum = np.amax(image)
     minimum = np.amin(image)
-    normed_image = (255*(image - minimum)) / (maximum - minimum)
-    return int(normed_image)     
+    normed_image = np.int_((255*(image - minimum)) / (maximum - minimum))
+    return normed_image     
     
 
 def sigmoid_normalize(image, a):
     maximum = np.amax(image)
     minimum = np.amin(image)
-    normed_image = 255*(1+np.exp((-a**(-1))*(image-128)))**(-1)
-    return int(normed_image)    
+    normed_image = np.int_(255*(1+np.exp((-a**(-1))*(image-128)))**(-1))
+    return normed_image    
 
 # print(histogram_times('airplane_crashes.csv'))
 # print(weigh_pokemons('pokedex.json', 10.0))
 # print(single_type_candy_count("pokedex.json"))
-# image = np.array([[1,2,3], [1,2,3]])
-# print(reflections_and_projections(image))
-# print(normalize(image))
-# print(sigmoid_normalize(image, 3))
+# image = np.array([[1,2], [3,4]])
+# print()
+# print("RP: ", reflections_and_projections(image))
+# print()
+# print("Normalize ", normalize(image))
+# print()
+# print("Sigmoid: ", sigmoid_normalize(image, 1000))
