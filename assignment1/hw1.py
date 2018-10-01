@@ -69,13 +69,13 @@ def reflections_and_projections(points):
         y = 1 - y
         reflected_points[1, i] = y
     #reflected_points = (-1) * points + 2
-    print(reflected_points)
+    #print(reflected_points)
     rotation_array = np.array([[0, -1], [1, 0]])
     rotated_points = rotation_array @ reflected_points
-    print(rotated_points)
+    #print(rotated_points)
     projected_array = 1/(10) * np.array([[1, 3], [3, 9]]) 
     projected_points = projected_array @ rotated_points
-    print(projected_points)
+    #print(projected_points)
     return projected_points
         
 def normalize(image):
@@ -94,10 +94,10 @@ def sigmoid_normalize(image, a):
 # print(histogram_times('airplane_crashes.csv'))
 # print(weigh_pokemons('pokedex.json', 10.0))
 # print(single_type_candy_count("pokedex.json"))
-image = np.array([[1,2], [3,4]])
+#image = np.array([[1,2], [3,4]])
 # print()
 # print("RP: ", reflections_and_projections(image))
-reflections_and_projections(image)
+#reflections_and_projections(image)
 # print()
 # print("Normalize ", normalize(image))
 # print()
