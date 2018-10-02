@@ -23,8 +23,8 @@ def histogram_times(filename):
                 crash_hours.append(int(time.split(':')[0]))
                 
         # Create a new list with the number of crashes per hour in day
-        crash_count = [0] * 23
-        for i in range(23):
+        crash_count = [0] * 24
+        for i in range(24):
             for hour in crash_hours:
                 if  hour == i:
                    crash_count[i] += 1
@@ -91,7 +91,7 @@ def sigmoid_normalize(image, a):
     normed_image = np.int_(255*(1+np.exp((-a**(-1))*(image-128)))**(-1))
     return normed_image    
 
-# print(histogram_times('airplane_crashes.csv'))
+print(histogram_times('airplane_crashes.csv'))
 # print(weigh_pokemons('pokedex.json', 10.0))
 # print(single_type_candy_count("pokedex.json"))
 #image = np.array([[1,2], [3,4]])
