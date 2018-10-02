@@ -63,13 +63,14 @@ def single_type_candy_count(filename):
 
 def reflections_and_projections(points):
     reflected_points = np.copy(points)
-    for i in range(len(points[0])):
-        y = points[1, i]
-        y -= 1
-        y = 1 - y
-        reflected_points[1, i] = y
+    #for i in range(len(points[0])):
+    #    y = points[1, i]
+    #    y = (-1 * y) + 2
+    #    reflected_points[1, i] = y
     #reflected_points = (-1) * points + 2
     #print(reflected_points)
+    # This is a numby array, so we can project this all at once
+    reflected_points[1] = (reflected_points[1] * (-1)) + 2
     rotation_array = np.array([[0, -1], [1, 0]])
     rotated_points = rotation_array @ reflected_points
     #print(rotated_points)
@@ -91,14 +92,14 @@ def sigmoid_normalize(image, a):
     normed_image = np.int_(255*(1+np.exp((-a**(-1))*(image-128)))**(-1))
     return normed_image    
 
-print(histogram_times('airplane_crashes.csv'))
-# print(weigh_pokemons('pokedex.json', 10.0))
-# print(single_type_candy_count("pokedex.json"))
+#print(histogram_times('airplane_crashes.csv'))
+#print(weigh_pokemons('pokedex.json', 10.0))
+#print(single_type_candy_count("pokedex.json"))
 #image = np.array([[1,2], [3,4]])
-# print()
-# print("RP: ", reflections_and_projections(image))
+#print()
+#print("RP: ", reflections_and_projections(image))
 #reflections_and_projections(image)
-# print()
-# print("Normalize ", normalize(image))
-# print()
-# print("Sigmoid: ", sigmoid_normalize(image, 1000))
+#print()
+#print("Normalize ", normalize(image))
+#print()
+#print("Sigmoid: ", sigmoid_normalize(image, 1000))
