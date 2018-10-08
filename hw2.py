@@ -4,7 +4,18 @@ import matplotlib.pyplot as plt
 
 
 def lyrics_word_count_easy(artist, song, phrase):
-    pass
+    url = "https://api.lyrics.ovh/v1/" + artist + "/" + song
+    r = requests.get(url)
+    if (r.status_code != requests.codes.ok):
+        return -1
+    json = r.json()
+    words = json["lyrics"].split()
+    word_count = 0
+    for word in words:
+        if word.lower() == phrase.lower():
+            word_count += 1
+    return word_count
+    
 
 def lyrics_word_count(artist, phrase):
     pass
@@ -26,6 +37,7 @@ def visualize():
     plt.subplot(2, 2, 4)
     plt.scatter(x,y)
     plt.title("Scatter")
-    plt.show()
-    
-visualize()
+    return plt.show()
+
+print(lyrics_word_count_easy("Rick Astley", "Never Gonna Give You Up", "never"))
+#visualize()
