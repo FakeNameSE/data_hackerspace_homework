@@ -1,6 +1,7 @@
 import requests
 import re
 import matplotlib.pyplot as plt
+from apikey import *
 
 
 def lyrics_word_count_easy(artist, song, phrase):
@@ -18,7 +19,24 @@ def lyrics_word_count_easy(artist, song, phrase):
     
 
 def lyrics_word_count(artist, phrase):
-    pass
+    api_key = apikey['api_key']
+
+    songs = []
+    parameters = {'q_artist': artist, 'apikey': api_key}
+    find_songs = requests.get("http://api.musixmatch.com/ws/1.1/track.search", params=parameters)
+    json = find_songs.json()
+    #print(json["message"]["body"]["track_list"])
+    for i in range(len(json["message"]["body"]["track_list"])):
+        #print(json["message"]["body"]["track_list"][i]["track"]["track_name"])
+        songs.append(json["message"]["body"]["track_list"][i]["track"]["track_name"])
+    #print(find_songs.url)
+    #print(find_songs)
+    count = 0
+    print(songs)
+    for song in songs:
+        count += lyrics_word_count_easy(artist, song, phrase)
+    return count
+    
 
 def visualize():
     import numpy as np
@@ -39,5 +57,6 @@ def visualize():
     plt.title("Scatter")
     return plt.show()
 
-print(lyrics_word_count_easy("Rick Astley", "Never Gonna Give You Up", "never"))
+#print(lyrics_word_count_easy("Rick Astley", "Never Gonna Give You Up", "never"))
+print(lyrics_word_count("Rick Astley", "never"))
 #visualize()
